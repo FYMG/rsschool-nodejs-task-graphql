@@ -2,6 +2,9 @@ import { GraphQLObjectType } from 'graphql/type/index.js';
 import createPostMutation from './posts/mutations/createPostMutation.js';
 import changePostMutation from './posts/mutations/changePostMutation.js';
 import deletePostMutation from './posts/mutations/deletePostMutation.js';
+import createProfileMutation from './profiles/mutations/createProfileMutation.js';
+import changeProfileMutation from './profiles/mutations/changeProfileMutation.js';
+import deleteProfileMutation from './profiles/mutations/deleteProfileMutation.js';
 
 const MutationTypes = new GraphQLObjectType({
   name: 'Mutation',
@@ -13,9 +16,9 @@ const MutationTypes = new GraphQLObjectType({
     createPost: createPostMutation,
     changePost: changePostMutation,
     deletePost: deletePostMutation,
-    // createProfile: undefined,
-    // changeProfile: undefined,
-    // deleteProfile: undefined,
+    createProfile: createProfileMutation,
+    changeProfile: changeProfileMutation,
+    deleteProfile: deleteProfileMutation,
     // subscribeTo: undefined,
     // unsubscribeFrom: undefined,
   },

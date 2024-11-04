@@ -3,6 +3,8 @@ import memberTypeQuery from './member-types/queries/memberTypeQuery.js';
 import memberTypesQuery from './member-types/queries/memberTypesQuery.js';
 import postQuery from './posts/queries/postQuery.js';
 import postsQuery from './posts/queries/postsQuery.js';
+import profilesQuery from "./profiles/queries/profilesQuery.js";
+import profileQuery from "./profiles/queries/profileQuery.js";
 
 const QueryTypes = new GraphQLObjectType({
   name: 'Query',
@@ -12,8 +14,8 @@ const QueryTypes = new GraphQLObjectType({
     memberType: memberTypeQuery,
     posts: postsQuery,
     post: postQuery,
-    // profiles: undefined,
-    // profile: undefined,
+    profiles: profilesQuery,
+    profile: profileQuery,
     // users: undefined,
     // user: undefined,
   },

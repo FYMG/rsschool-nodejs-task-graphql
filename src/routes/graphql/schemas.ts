@@ -22,11 +22,6 @@ export const createGqlResponseSchema = {
   ),
 };
 
-export enum MemberTypeId {
-  BASIC = 'BASIC',
-  BUSINESS = 'BUSINESS',
-}
-
 export const rootSchema = new GraphQLSchema({
   query: QueryTypes,
   mutation: MutationTypes,
