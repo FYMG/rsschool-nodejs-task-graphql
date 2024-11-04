@@ -8,13 +8,13 @@ export interface ICreatePost {
   authorId: string;
 }
 
-const createPostType = new GraphQLInputObjectType({
-  name: 'CreatePost',
+const createPostInput = new GraphQLInputObjectType({
+  name: 'CreatePostInput',
   fields: {
-    title: { type: GraphQLString },
-    content: { type: GraphQLString },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    content: { type: new GraphQLNonNull(GraphQLString) },
     authorId: { type: new GraphQLNonNull(UUIDType) },
   },
 });
 
-export default createPostType;
+export default createPostInput;

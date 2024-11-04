@@ -6,12 +6,12 @@ export interface IChangePost {
   content?: string;
 }
 
-const ChangePostType = new GraphQLInputObjectType({
-  name: 'ChangePost',
+const ChangePostInput = new GraphQLInputObjectType({
+  name: 'ChangePostInput',
   fields: {
     title: { type: GraphQLString },
     content: { type: GraphQLString },
   },
 });
 
-export default ChangePostType;
+export default ChangePostInput;

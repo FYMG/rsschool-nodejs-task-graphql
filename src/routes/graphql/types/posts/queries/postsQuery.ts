@@ -5,7 +5,7 @@ import PostType from '../types/PostType.js';
 
 const memberTypesQuery: GraphQLFieldConfig<unknown, GraphqlContext> = {
   type: ListOfNotNull(PostType),
-  resolve: async (source, args, context) => await context.prisma.post.findMany(),
+  resolve: async (source, args, { prisma }) => await prisma.post.findMany(),
 };
 
 export default memberTypesQuery;

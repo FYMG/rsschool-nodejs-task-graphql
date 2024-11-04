@@ -17,9 +17,10 @@ const deleteUserMutation: GraphQLFieldConfig<
     id: { type: new GraphQLNonNull(UUIDType) },
   },
   resolve: async (parent, { id }, { prisma }) => {
-    return prisma.user.delete({
+    await prisma.user.delete({
       where: { id },
     });
+    return 'User deleted successfully';
   },
 };
 

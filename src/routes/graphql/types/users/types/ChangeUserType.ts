@@ -7,7 +7,7 @@ export interface IChangeUser {
 }
 
 const changeUserType = new GraphQLInputObjectType({
-  name: 'ChangeUserType',
+  name: 'ChangeUserInput',
   fields: {
     name: {
       type: GraphQLString,

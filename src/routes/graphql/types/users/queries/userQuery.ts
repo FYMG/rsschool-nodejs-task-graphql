@@ -1,7 +1,7 @@
 import { GraphQLFieldConfig, GraphQLNonNull } from 'graphql/type/index.js';
 import { UUIDType } from '../../uuid.js';
-import UserType from '../types/UserType.js';
 import GraphqlContext from '../../GraphqlContext.js';
+import UserType from '../types/UserType.js';
 
 export interface UserQueryArgs {
   id: string;

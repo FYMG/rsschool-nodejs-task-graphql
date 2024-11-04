@@ -12,7 +12,7 @@ export interface IChangeProfile {
 }
 
 const ChangeProfileType = new GraphQLInputObjectType({
-  name: 'ChangeProfile',
+  name: 'ChangeProfileInput',
   fields: {
     isMale: { type: GraphQLBoolean },
     yearOfBirth: { type: GraphQLInt },

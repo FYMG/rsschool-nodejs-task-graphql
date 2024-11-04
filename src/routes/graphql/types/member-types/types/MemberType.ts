@@ -13,7 +13,7 @@ export interface IMember {
 }
 
 export const MemberType = new GraphQLObjectType({
-  name: 'MemberType',
+  name: 'memberType',
   fields: {
     id: { type: new GraphQLNonNull(MemberTypeIdEnum) },
     discount: { type: new GraphQLNonNull(GraphQLFloat) },

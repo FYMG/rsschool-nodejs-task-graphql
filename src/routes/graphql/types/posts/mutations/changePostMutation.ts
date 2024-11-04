@@ -2,7 +2,7 @@ import GraphqlContext from '../../GraphqlContext.js';
 import { GraphQLFieldConfig, GraphQLNonNull } from 'graphql/type/index.js';
 import PostType from '../types/PostType.js';
 import { UUIDType } from '../../uuid.js';
-import ChangePostType, { IChangePost } from '../types/ChangePostType.js';
+import ChangePostInput, { IChangePost } from '../types/ChangePostInput.js';
 
 export type ChangePostMutationArgs = {
   id: string;
@@ -14,13 +14,13 @@ const changePostMutation: GraphQLFieldConfig<
   GraphqlContext,
   ChangePostMutationArgs
 > = {
-  type: PostType,
+  type: new GraphQLNonNull(PostType),
   args: {
     id: { type: new GraphQLNonNull(UUIDType) },
-    dto: { type: ChangePostType },
+    dto: { type: new GraphQLNonNull(ChangePostInput) },
   },
   resolve: async (source, { id, dto }, { prisma }) => {
-    return prisma.post.update({
+    return await prisma.post.update({
       where: { id },
       data: dto,
     });

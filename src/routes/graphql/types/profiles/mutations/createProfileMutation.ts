@@ -12,7 +12,7 @@ const createProfileMutation: GraphQLFieldConfig<
   GraphqlContext,
   CreateProfileMutationArgs
 > = {
-  type: ProfileType,
+  type: new GraphQLNonNull(ProfileType),
   args: {
     dto: { type: new GraphQLNonNull(CreateProfileType) },
   },

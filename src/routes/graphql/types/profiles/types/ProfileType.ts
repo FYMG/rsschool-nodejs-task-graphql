@@ -8,6 +8,7 @@ import { UUIDType } from '../../uuid.js';
 import GraphqlContext from '../../GraphqlContext.js';
 import MemberType, { IMember } from '../../member-types/types/MemberType.js';
 import { GraphQLString } from 'graphql';
+import MemberTypeIdEnum from '../../member-types/types/MemberTypeIdEnum.js';
 
 export interface IProfile {
   id: string;
@@ -20,31 +21,25 @@ export interface IProfile {
 
 const ProfileType = new GraphQLObjectType<IProfile, GraphqlContext>({
   name: 'Profile',
-  fields: {
-    id: {
-      type: new GraphQLNonNull(UUIDType),
-    },
-    isMale: {
-      type: GraphQLBoolean,
-    },
-    yearOfBirth: {
-      type: GraphQLInt,
-    },
-    memberTypeId: {
-      type: GraphQLString,
-    },
-    userId: {
-      type: new GraphQLNonNull(UUIDType),
-    },
+  fields: () => ({
+    id: { type: new GraphQLNonNull(UUIDType) },
+    userId: { type: new GraphQLNonNull(GraphQLString) },
+    isMale: { type: new GraphQLNonNull(GraphQLBoolean) },
+    yearOfBirth: { type: new GraphQLNonNull(GraphQLInt) },
+    memberTypeId: { type: new GraphQLNonNull(MemberTypeIdEnum) },
     memberType: {
-      type: new GraphQLNonNull(MemberType),
-      resolve: async ({ memberTypeId }, args, { prisma }) => {
-        return prisma.memberType.findMany({
-          where: { id: memberTypeId },
+      type: MemberType,
+      resolve: async (profile, _, { prisma }) => {
+        const memberType = await prisma.memberType.findUnique({
+          where: { id: profile.memberTypeId },
         });
+
+        if (!memberType) return null;
+
+        return memberType;
       },
     },
-  },
+  }),
 });
 
 export default ProfileType;

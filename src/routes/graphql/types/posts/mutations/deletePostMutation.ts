@@ -1,6 +1,6 @@
 import GraphqlContext from '../../GraphqlContext.js';
-import PostType from '../types/PostType.js';
 import { GraphQLFieldConfig, GraphQLID, GraphQLNonNull } from 'graphql/type/index.js';
+import { GraphQLString } from 'graphql/index.js';
 
 export interface DeletePostMutationArgs {
   id: string;
@@ -11,12 +11,13 @@ const deletePostMutation: GraphQLFieldConfig<
   GraphqlContext,
   DeletePostMutationArgs
 > = {
-  type: PostType,
+  type: new GraphQLNonNull(GraphQLString),
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
   },
-  resolve: async (source, { id }, context) => {
-    return context.prisma.post.delete({ where: { id: id } });
+  resolve: async (source, { id }, { prisma }) => {
+    await prisma.post.delete({ where: { id } });
+    return 'Post deleted';
   },
 };
 

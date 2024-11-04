@@ -15,7 +15,7 @@ export interface ICreateProfile {
 }
 
 const CreateProfileType = new GraphQLInputObjectType({
-  name: 'CreateProfile',
+  name: 'CreateProfileInput',
   fields: {
     isMale: { type: new GraphQLNonNull(GraphQLBoolean) },
     yearOfBirth: { type: new GraphQLNonNull(GraphQLInt) },
