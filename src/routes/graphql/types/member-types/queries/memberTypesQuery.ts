@@ -5,7 +5,9 @@ import MemberType from '../types/MemberType.js';
 
 const memberTypesQuery: GraphQLFieldConfig<unknown, GraphqlContext> = {
   type: ListOfNotNull(MemberType),
-  resolve: async (root, args, context) => await context.prisma.memberType.findMany(),
+  resolve: async (source, args, { prisma }) => {
+    return prisma.memberType.findMany();
+  },
 };
 
 export default memberTypesQuery;

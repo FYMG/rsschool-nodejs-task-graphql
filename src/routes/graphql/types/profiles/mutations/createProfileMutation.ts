@@ -1,15 +1,10 @@
-import CreateProfileType from '../types/CreateProfileType.js';
+import CreateProfileType, { ICreateProfile } from '../types/CreateProfileType.js';
 import ProfileType from '../types/ProfileType.js';
 import GraphqlContext from '../../GraphqlContext.js';
 import { GraphQLFieldConfig, GraphQLNonNull } from 'graphql/type/index.js';
 
 export interface CreateProfileMutationArgs {
-  dto: {
-    isMale: boolean;
-    yearOfBirth: number;
-    userId: string;
-    memberTypeId: string;
-  };
+  dto: ICreateProfile;
 }
 
 const createProfileMutation: GraphQLFieldConfig<

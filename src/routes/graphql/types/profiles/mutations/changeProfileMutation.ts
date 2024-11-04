@@ -1,16 +1,12 @@
 import { GraphQLFieldConfig, GraphQLNonNull } from 'graphql/type/index.js';
 import ProfileType from '../types/ProfileType.js';
-import ChangeProfileType from '../types/ChangeProfileType.js';
+import ChangeProfileType, { IChangeProfile } from '../types/ChangeProfileType.js';
 import { UUIDType } from '../../uuid.js';
 import GraphqlContext from '../../GraphqlContext.js';
 
 export interface ChangeProfileMutationArgs {
   id: string;
-  dto: {
-    isMale: boolean;
-    yearOfBirth: number;
-    memberTypeId: string;
-  };
+  dto: IChangeProfile;
 }
 
 const changeProfileMutation: GraphQLFieldConfig<

@@ -1,17 +1,24 @@
 import {
   GraphQLBoolean,
-  GraphQLFieldConfig,
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
 } from 'graphql/type/index.js';
 import { UUIDType } from '../../uuid.js';
 import GraphqlContext from '../../GraphqlContext.js';
-import MemberType from '../../member-types/types/MemberType.js';
-import { MemberTypeId } from '../../../../member-types/schemas.js';
+import MemberType, { IMember } from '../../member-types/types/MemberType.js';
 import { GraphQLString } from 'graphql';
 
-const ProfileType = new GraphQLObjectType({
+export interface IProfile {
+  id: string;
+  isMale: boolean;
+  yearOfBirth: number;
+  memberTypeId: string;
+  userId: string;
+  memberType: IMember;
+}
+
+const ProfileType = new GraphQLObjectType<IProfile, GraphqlContext>({
   name: 'Profile',
   fields: {
     id: {
@@ -30,13 +37,13 @@ const ProfileType = new GraphQLObjectType({
       type: new GraphQLNonNull(UUIDType),
     },
     memberType: {
-      type: MemberType,
-      resolve: async ({ memberTypeId }, _, { prisma }) => {
-        return prisma.memberType.findUnique({
+      type: new GraphQLNonNull(MemberType),
+      resolve: async ({ memberTypeId }, args, { prisma }) => {
+        return prisma.memberType.findMany({
           where: { id: memberTypeId },
         });
       },
-    } as GraphQLFieldConfig<{ memberTypeId: MemberTypeId }, GraphqlContext>,
+    },
   },
 });
 

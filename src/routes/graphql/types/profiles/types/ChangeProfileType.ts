@@ -5,6 +5,12 @@ import {
   GraphQLInt,
 } from 'graphql/type/index.js';
 
+export interface IChangeProfile {
+  isMale?: boolean;
+  yearOfBirth?: number;
+  memberTypeId?: string;
+}
+
 const ChangeProfileType = new GraphQLInputObjectType({
   name: 'ChangeProfile',
   fields: {

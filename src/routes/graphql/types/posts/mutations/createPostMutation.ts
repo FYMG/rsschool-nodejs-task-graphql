@@ -1,14 +1,10 @@
 import PostType from '../types/PostType.js';
-import CreatePostType from '../types/CreatePostType.js';
+import CreatePostType, { ICreatePost } from '../types/CreatePostType.js';
 import GraphqlContext from '../../GraphqlContext.js';
 import { GraphQLFieldConfig } from 'graphql/type/index.js';
 
 export interface CreatePostMutationArgs {
-  dto: {
-    title: string;
-    content: string;
-    authorId: string;
-  };
+  dto: ICreatePost;
 }
 
 const createPostMutation: GraphQLFieldConfig<

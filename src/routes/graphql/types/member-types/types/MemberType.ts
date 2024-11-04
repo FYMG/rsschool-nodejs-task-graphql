@@ -6,7 +6,13 @@ import {
 } from 'graphql/type/index.js';
 import MemberTypeIdEnum from './MemberTypeIdEnum.js';
 
-const MemberType = new GraphQLObjectType({
+export interface IMember {
+  id: string;
+  discount: number;
+  postsLimitPerMonth: number;
+}
+
+export const MemberType = new GraphQLObjectType({
   name: 'MemberType',
   fields: {
     id: { type: new GraphQLNonNull(MemberTypeIdEnum) },

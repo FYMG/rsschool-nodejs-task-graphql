@@ -13,8 +13,8 @@ const memberTypeQuery: GraphQLFieldConfig<unknown, GraphqlContext, MemberTypeQue
     args: {
       id: { type: new GraphQLNonNull(MemberTypeIdEnum) },
     },
-    resolve: async (source, { id }, context) => {
-      return context.prisma.memberType.findUnique({ where: { id } });
+    resolve: async (source, { id }, { prisma }) => {
+      return prisma.memberType.findUnique({ where: { id } });
     },
   };
 

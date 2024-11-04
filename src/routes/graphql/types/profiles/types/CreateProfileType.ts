@@ -7,6 +7,13 @@ import {
 import MemberTypeIdEnum from '../../member-types/types/MemberTypeIdEnum.js';
 import { UUIDType } from '../../uuid.js';
 
+export interface ICreateProfile {
+  isMale: boolean;
+  yearOfBirth: number;
+  userId: string;
+  memberTypeId: string;
+}
+
 const CreateProfileType = new GraphQLInputObjectType({
   name: 'CreateProfile',
   fields: {

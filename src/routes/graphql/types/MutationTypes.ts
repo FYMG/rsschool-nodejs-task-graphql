@@ -5,22 +5,26 @@ import deletePostMutation from './posts/mutations/deletePostMutation.js';
 import createProfileMutation from './profiles/mutations/createProfileMutation.js';
 import changeProfileMutation from './profiles/mutations/changeProfileMutation.js';
 import deleteProfileMutation from './profiles/mutations/deleteProfileMutation.js';
+import createUserMutation from './users/mutations/createUserMutation.js';
+import changeUserMutation from './users/mutations/changeUserMutation.js';
+import deleteUserMutation from './users/mutations/deleteUserMutation.js';
+import subscribeToMutation from './users/mutations/subscribeToMutation.js';
+import unsubscribeFromMutation from './users/mutations/unsubscribeFromMutation.js';
 
 const MutationTypes = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    // TODO: Add mutations
-    // createUser: undefined,
-    // changeUser: undefined,
-    // deleteUser: undefined,
+    createUser: createUserMutation,
+    changeUser: changeUserMutation,
+    deleteUser: deleteUserMutation,
     createPost: createPostMutation,
     changePost: changePostMutation,
     deletePost: deletePostMutation,
     createProfile: createProfileMutation,
     changeProfile: changeProfileMutation,
     deleteProfile: deleteProfileMutation,
-    // subscribeTo: undefined,
-    // unsubscribeFrom: undefined,
+    subscribeTo: subscribeToMutation,
+    unsubscribeFrom: unsubscribeFromMutation,
   },
 });
 
